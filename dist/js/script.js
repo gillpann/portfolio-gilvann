@@ -67,6 +67,7 @@ darkModeToggle.addEventListener("click", () => {
 // Animasi mengetik
 
 const jobElement = document.getElementById("job-text");
+const cursorElement = document.getElementById("cursor");
 const textSequences = ["I'm Front-End Developer. ", "Web Designer. "];
 let indexSequence = 0;
 let index = 0;
