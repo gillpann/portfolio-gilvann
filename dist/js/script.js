@@ -24,7 +24,7 @@ hamburger.addEventListener("click", function () {
   navMenu.classList.toggle("hidden");
 });
 
-// Klik di luar hamburger
+
 window.addEventListener("click", function (e) {
   if (e.target != hamburger && e.target != navMenu) {
     hamburger.classList.remove("hamburger-active");
@@ -35,7 +35,6 @@ window.addEventListener("click", function (e) {
 // Dark mode
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-// Periksa mode saat halaman dimuat
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
   darkModeToggle.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
@@ -44,7 +43,6 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     `;
 }
 
-// Tambahkan event listener untuk mengubah mode saat tombol diklik
 darkModeToggle.addEventListener("click", () => {
   const html = document.documentElement;
   const isDarkMode = html.classList.contains("dark");
@@ -65,3 +63,53 @@ darkModeToggle.addEventListener("click", () => {
 
   html.classList.toggle("dark");
 });
+
+// Animasi mengetik
+
+const jobElement = document.getElementById("job-text");
+const textSequences = ["I'm Front-End Developer. ", "Web Designer. "];
+let indexSequence = 0;
+let index = 0;
+let isTyping = true;
+
+function typeWriter() {
+  const currentSequence = textSequences[indexSequence];
+
+  if (index < currentSequence.length && isTyping) {
+    jobElement.querySelector("#typing-text").textContent +=
+      currentSequence.charAt(index);
+    index++;
+    setTimeout(typeWriter, 80); 
+  } else {
+    isTyping = false;
+    setTimeout(deleteText, 800); 
+  }
+}
+
+function deleteText() {
+  const currentSequence = textSequences[indexSequence];
+
+  if (index >= 0 && !isTyping) {
+    const currentText = jobElement.querySelector("#typing-text").textContent;
+    const newText = currentText.substring(0, index - 1);
+    jobElement.querySelector("#typing-text").textContent = newText;
+    index--;
+
+    setTimeout(deleteText, 30); 
+  } else {
+    isTyping = true;
+    index = 0;
+
+    indexSequence++;
+    if (indexSequence >= textSequences.length) {
+      indexSequence = 0;
+    }
+
+    setTimeout(typeWriter, 800); 
+  }
+}
+
+// Mulai animasi ketik saat halaman dimuat
+window.onload = function () {
+  typeWriter();
+};
