@@ -1,3 +1,56 @@
+import { motion } from "framer-motion";
+
+document.addEventListener("DOMContentLoaded", function () {
+  const initialAnimations = document.querySelectorAll(".animate-on-load");
+
+  initialAnimations.forEach((element) => {
+    const initialAnimation = {
+      hidden: { opacity: 0, x: -50 }, // Atau x: 50 untuk muncul dari kanan
+      visible: { opacity: 1, x: 0 },
+    };
+
+    const initialOptions = {
+      duration: 1,
+    };
+
+    const initialVariants = {
+      hidden: initialAnimation.hidden,
+      visible: initialAnimation.visible,
+    };
+
+    const initialTransition = {
+      ...initialOptions,
+    };
+
+    const initialAnimationConfig = {
+      variants: initialVariants,
+      initial: "hidden",
+      animate: "visible",
+      transition: initialTransition,
+    };
+
+    motion(element).set(initialAnimationConfig);
+  });
+
+  window.addEventListener("scroll", function () {
+    const heroSection = document.getElementById("hero");
+    const aboutSection = document.getElementById("about");
+    const skillsSection = document.getElementById("skills");
+    const projectsSection = document.getElementById("projects");
+    const contactSection = document.getElementById("contact");
+
+    const scrollPosition = window.scrollY + window.innerHeight;
+
+    if (scrollPosition > heroSection.offsetTop) {
+      motion(document.querySelector(".hero-title")).set({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1 },
+      });
+    }
+  });
+});
+
 // Navbar Fixed
 window.onscroll = function () {
   const header = document.querySelector("header");
@@ -23,7 +76,6 @@ hamburger.addEventListener("click", function () {
   hamburger.classList.toggle("hamburger-active");
   navMenu.classList.toggle("hidden");
 });
-
 
 window.addEventListener("click", function (e) {
   if (e.target != hamburger && e.target != navMenu) {
@@ -80,10 +132,10 @@ function typeWriter() {
     jobElement.querySelector("#typing-text").textContent +=
       currentSequence.charAt(index);
     index++;
-    setTimeout(typeWriter, 80); 
+    setTimeout(typeWriter, 80);
   } else {
     isTyping = false;
-    setTimeout(deleteText, 800); 
+    setTimeout(deleteText, 800);
   }
 }
 
@@ -96,7 +148,7 @@ function deleteText() {
     jobElement.querySelector("#typing-text").textContent = newText;
     index--;
 
-    setTimeout(deleteText, 30); 
+    setTimeout(deleteText, 30);
   } else {
     isTyping = true;
     index = 0;
@@ -106,7 +158,7 @@ function deleteText() {
       indexSequence = 0;
     }
 
-    setTimeout(typeWriter, 800); 
+    setTimeout(typeWriter, 800);
   }
 }
 
