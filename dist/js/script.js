@@ -24,6 +24,7 @@ hamburger.addEventListener("click", function () {
   navMenu.classList.toggle("hidden");
 });
 
+
 window.addEventListener("click", function (e) {
   if (e.target != hamburger && e.target != navMenu) {
     hamburger.classList.remove("hamburger-active");
@@ -79,10 +80,10 @@ function typeWriter() {
     jobElement.querySelector("#typing-text").textContent +=
       currentSequence.charAt(index);
     index++;
-    setTimeout(typeWriter, 80);
+    setTimeout(typeWriter, 80); 
   } else {
     isTyping = false;
-    setTimeout(deleteText, 800);
+    setTimeout(deleteText, 800); 
   }
 }
 
@@ -95,7 +96,7 @@ function deleteText() {
     jobElement.querySelector("#typing-text").textContent = newText;
     index--;
 
-    setTimeout(deleteText, 30);
+    setTimeout(deleteText, 30); 
   } else {
     isTyping = true;
     index = 0;
@@ -105,7 +106,7 @@ function deleteText() {
       indexSequence = 0;
     }
 
-    setTimeout(typeWriter, 800);
+    setTimeout(typeWriter, 800); 
   }
 }
 
