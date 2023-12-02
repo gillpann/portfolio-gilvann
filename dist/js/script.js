@@ -114,3 +114,12 @@ function deleteText() {
 window.onload = function () {
   typeWriter();
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const header = document.querySelector("header");
+  header.classList.add("animate-header");
+
+  const heroSection = document.querySelector("#Home");
+  heroSection.classList.add("animate-hero");
+});

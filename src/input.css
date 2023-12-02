@@ -46,3 +46,46 @@ body {
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+@keyframes moveUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); 
+    }
+}
+
+.animate-updown {
+    animation: moveUpDown 2s ease-in-out infinite;
+}
+
+@keyframes slideInFromTop {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animate-header {
+        animation: slideInFromTop 2s ease-in-out;
+    }
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-hero {
+    animation: slideInFromBottom 2s ease-in-out;
+}
